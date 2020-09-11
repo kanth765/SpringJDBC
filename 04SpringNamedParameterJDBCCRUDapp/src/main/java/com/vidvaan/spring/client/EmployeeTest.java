@@ -14,10 +14,17 @@ public class EmployeeTest {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		EmployeeDaoImpl employeeImpl = (EmployeeDaoImpl) context.getBean("dao");
+
 		List<Employee> allEmps = employeeImpl.findAllEmps();
 		for (Employee employee : allEmps) {
 			System.out.println(employee);
 		}
+
+//		Employee employee = new Employee();
+//		employee.setEmail("sathya@gmail.com");
+//		employee.setEname("sathya");
+//		employee.setEid(6);
+//		employeeImpl.update(employee);
 
 //		Map<String, Float> map = employeeImpl.getAllEmps();
 //		for (Map.Entry<String, Float> entry : map.entrySet()) {

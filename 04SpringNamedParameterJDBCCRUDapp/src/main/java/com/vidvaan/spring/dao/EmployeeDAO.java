@@ -9,6 +9,8 @@ public interface EmployeeDAO {
 
 	void insert(Employee employee);
 
+	void update(Employee employee);
+
 //	Map<String, Float> getAllEmps();
 
 	List<Employee> findAllEmps();

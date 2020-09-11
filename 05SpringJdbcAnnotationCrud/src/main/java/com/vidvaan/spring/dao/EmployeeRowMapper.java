@@ -17,8 +17,5 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 		employee.setEname(rs.getString(3));
 		return employee;
 	}
-	
-	//beanrowmapper
-	//resultsetextractor
 
 }
