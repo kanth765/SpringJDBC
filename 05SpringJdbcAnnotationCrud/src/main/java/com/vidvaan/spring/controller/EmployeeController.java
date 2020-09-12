@@ -19,6 +19,10 @@ public class EmployeeController {
 	}
 
 	public List<Employee> getAllEmps() {
-		return employeeServiceImpl.getAllEmps();
+		return employeeServiceImpl.getAll();
+	}
+
+	public void insertRecords(List<Employee> employeeList) {
+		employeeServiceImpl.insertRecords(employeeList);
 	}
 }
