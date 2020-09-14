@@ -70,4 +70,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	}
 
+	public int[] batchUpdate(List<Employee> employeeList) {
+		return employeeDaoImpl.batchUpdate(employeeList);
+	}
+
 }

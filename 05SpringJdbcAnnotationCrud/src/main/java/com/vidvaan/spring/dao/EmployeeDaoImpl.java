@@ -1,10 +1,13 @@
 package com.vidvaan.spring.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -92,6 +95,25 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 		}
 		jdbcTemplate.batchUpdate(sql, batchEmps);
 
+	}
+
+	public int[] batchUpdate(final List<Employee> employeeList) {
+		String sql = "insert into employee values(?,?,?,?)";
+		int [] insertRecords=jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
+				ps.setInt(1, employeeList.get(i).getEid());
+				ps.setString(2, employeeList.get(i).getEmail());
+				ps.setString(3, employeeList.get(i).getEname());
+				ps.setFloat(4, employeeList.get(i).getEsal());
+
+			}
+
+			public int getBatchSize() {
+				return 2;
+			}
+		});
+		return insertRecords;
 	}
 
 }

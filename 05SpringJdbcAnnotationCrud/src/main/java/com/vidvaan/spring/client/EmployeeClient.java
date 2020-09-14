@@ -28,19 +28,19 @@ public class EmployeeClient {
 //		}
 
 		Employee e1 = new Employee();
-		e1.setEid(120);
+		e1.setEid(142);
 		e1.setEmail("krishna@gmail.com");
 		e1.setEname("krishna");
 		e1.setEsal(27000.0f);
 		Employee e2 = new Employee();
-		e2.setEid(121);
+		e2.setEid(143);
 		e2.setEmail("shrav@gmail.com");
 		e2.setEname("shrav");
 		e2.setEsal(23000.0f);
 		List<Employee> employeeList = new ArrayList<Employee>();
 		employeeList.add(e1);
 		employeeList.add(e2);
-		controller.insertRecords(employeeList);
+		controller.batchUpdate(employeeList);
 
 	}
 

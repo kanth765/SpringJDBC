@@ -29,4 +29,6 @@ public interface EmployeeDAO {
 	boolean isEmployeeExits(String name);
 	
 	void insertRecords(List<Employee> employeeList);
+	
+	int [] batchUpdate(List<Employee> employeeList);
 }

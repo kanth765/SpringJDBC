@@ -18,14 +18,16 @@ public interface EmployeeService {
 	List<Employee> getAll();
 
 	Map<String, Float> getEmpMap();
-	
+
 	Employee findById(int eid);
-	
+
 	int findTotalEmps();
-	
+
 	int findTotalEmployeesByEsal(float sal);
-	
+
 	boolean isEmployeeExits(String name);
-	
+
 	void insertRecords(List<Employee> employeeList);
+
+	int[] batchUpdate(List<Employee> employeeList);
 }

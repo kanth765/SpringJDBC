@@ -25,4 +25,8 @@ public class EmployeeController {
 	public void insertRecords(List<Employee> employeeList) {
 		employeeServiceImpl.insertRecords(employeeList);
 	}
+
+	public int[] batchUpdate(List<Employee> employeeList) {
+		return employeeServiceImpl.batchUpdate(employeeList);
+	}
 }
