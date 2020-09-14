@@ -7,7 +7,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Repository;
 
 import com.vidvaan.spring.bean.Employee;
@@ -39,5 +43,19 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 	public List<Employee> getAllEmps() {
 		RowMapper<Employee> rowMapper = new EmployeeRowMapper();
 		return namedParameterJdbcTemplate.query("select * from employee", rowMapper);
+	}
+
+	public Employee getById(int id) {
+		String sql = "select * from employee where empid=:eid";
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+		paramSource.addValue("eid", id);
+		return namedParameterJdbcTemplate.queryForObject(sql, paramSource, new EmployeeRowMapper());
+	}
+	
+	
+	public int[] batchUpdate(List<Employee> employeeList) {
+		String sql = "insert into employee(empid, email, ename,esal) values(:eid, :email, :ename,:esal)";
+		SqlParameterSource[] batch = new SqlParameterSourceUtils().createBatch(employeeList.toArray());
+		return namedParameterJdbcTemplate.batchUpdate(sql, batch);
 	}
 }
